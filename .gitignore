@@ -208,5 +208,5 @@ __marimo__/
 
 #DE course official
 data-engineering-zoomcamp/
-*.csv
-*.parquet
+.csv
+.parquet
