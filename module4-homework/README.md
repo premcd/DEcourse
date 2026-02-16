@@ -13,7 +13,7 @@ If you run dbt run --select int_trips_unioned, what models will be built?
 
     stg_green_tripdata, stg_yellow_tripdata, and int_trips_unioned (upstream dependencies)
     Any model with upstream and downstream dependencies to int_trips_unioned
->>>>answer is>>>int_trips_unioned only
+answer is:int_trips_unioned only
     int_trips_unioned, int_trips, and fct_trips (downstream dependencies)
 
 
@@ -35,7 +35,7 @@ Your model fct_trips has been running successfully for months. A new value 6 now
 What happens when you run dbt test --select fct_trips?
 
     dbt will skip the test because the model didn't change
->>>>answer is>>>dbt will fail the test, returning a non-zero exit code
+answer is: dbt will fail the test, returning a non-zero exit code
     dbt will pass the test with a warning about the new value
     dbt will update the configuration to include the new value
 
@@ -48,7 +48,7 @@ What is the count of records in the fct_monthly_zone_revenue model?
 
     12,998
     14,120
->>>>answer is>>>12,184
+answer is:12,184
     15,421
 
 
@@ -58,7 +58,7 @@ Using the fct_monthly_zone_revenue table, find the pickup zone with the highest 
 
 Which zone had the highest revenue?
 
->>>answer is>>>East Harlem North
+answer is:East Harlem North
     Morningside Heights
     East Harlem South
     Washington Heights South
@@ -81,7 +81,7 @@ Using the fct_monthly_zone_revenue table, what is the total number of trips (tot
 
     500,234
     350,891
->>>>answer is>>>384,624
+answer is:384,624
     421,509
 
 '''
@@ -106,7 +106,7 @@ Create a staging model for the For-Hire Vehicle (FHV) trip data for 2019.
 What is the count of records in stg_fhv_tripdata?
 
     42,084,899
-    43,244,693
+Answer is: 43,244,693
     22,998,722
     44,112,187
 
@@ -114,93 +114,3 @@ What is the count of records in stg_fhv_tripdata?
 
 
 
-
-
-Tests de SQL:-------------------------------------------
-SELECT
-*
-  
-FROM
-  `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
-
-order by pickup_zone, revenue_month
-
-LIMIT 110
-;
-
-
-
-
-SELECT
-pickup_zone, revenue_monthly_total_amount, revenue_month
-  
-FROM
-  `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
-
-WHERE revenue_month >= '2020-01-01 00:00:00 UTC' AND revenue_month <= '2020-12-31 00:00:00 UTC'
-AND service_type = 'Green'
-ORDER by revenue_monthly_total_amount
-DESC
-LIMIT 110;
-
-
-
-select   date_trunc( revenue_month, year) as revenue_year,
-SUM(revenue_monthly_total_amount) as year_total_amount
-from  `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
-GROUP BY revenue_year
-order by year_total_amount
-;
-
-----------------------
----- la j ai le total revenue par zone- mais il me faut le total revenue / zone / year - now fait la meme chose que ci-dessous-------
-select   pickup_zone, SUM(revenue_monthly_total_amount) as revenue_zone
-from  `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
-WHERE service_type = 'Green'
-AND date_trunc(revenue_month, year) = '2020-01-01 00:00:00 UTC'
-GROUP BY pickup_zone
-order by revenue_zone DESC
-;
-
-
----- returns the total amount per zone per month--now fait la meme chose que ci-dessu --- 
-
-SELECT pickup_zone,
-revenue_month,
-revenue_monthly_total_amount,
-SUM(revenue_monthly_total_amount) OVER (PARTITION BY pickup_zone ORDER BY revenue_month) AS total_per_zone
-FROM `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
-WHERE date_trunc(revenue_month, year) = '2020-01-01 00:00:00 UTC'
-AND service_type = 'Green'
-ORDER BY total_per_zone DESC;
----------------------
------test avec with------
-with s as (
-SELECT pickup_zone,
-revenue_month,
-revenue_monthly_total_amount,
-SUM(revenue_monthly_total_amount) OVER (PARTITION BY pickup_zone ORDER BY revenue_month) AS total_per_zone
-FROM `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
-WHERE service_type = 'Green'
-ORDER BY total_per_zone DESC
-)
-Select pickup_zone,
-revenue_month,
-revenue_monthly_total_amount,
-SUM(s.total_per_zone) OVER (PARTITION BY date_trunc(s.revenue_month, year) ORDER BY s.total_per_zone) AS total_per_zone_per_year
-FROM s
-ORDER BY total_per_zone_per_year DESC;
-
-
-
-
----------
-
-
-select pickup_zone ,
-
-SUM (revenue_monthly_total_amount) OVER(PARTITION BY pickup_zone ORDER BY pickup_zone) as revenue_year
-from  `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`;
-
-
-WITH partitionned_by_zones as (select * from  `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue` , PARTITION BY pickup_zone)
