@@ -11,10 +11,10 @@ models/
 
 If you run dbt run --select int_trips_unioned, what models will be built?
 
-    stg_green_tripdata, stg_yellow_tripdata, and int_trips_unioned (upstream dependencies)
-    Any model with upstream and downstream dependencies to int_trips_unioned
-answer is:int_trips_unioned only
-    int_trips_unioned, int_trips, and fct_trips (downstream dependencies)
+stg_green_tripdata, stg_yellow_tripdata, and int_trips_unioned (upstream dependencies)
+Any model with upstream and downstream dependencies to int_trips_unioned
+>answer is:int_trips_unioned only
+int_trips_unioned, int_trips, and fct_trips (downstream dependencies)
 
 
 
@@ -34,10 +34,10 @@ Your model fct_trips has been running successfully for months. A new value 6 now
 
 What happens when you run dbt test --select fct_trips?
 
-    dbt will skip the test because the model didn't change
-answer is: dbt will fail the test, returning a non-zero exit code
-    dbt will pass the test with a warning about the new value
-    dbt will update the configuration to include the new value
+dbt will skip the test because the model didn't change
+>answer is: dbt will fail the test, returning a non-zero exit code
+dbt will pass the test with a warning about the new value
+dbt will update the configuration to include the new value
 
 
 Question 3. Counting Records in fct_monthly_zone_revenue
@@ -46,10 +46,10 @@ After running your dbt project, query the fct_monthly_zone_revenue model.
 
 What is the count of records in the fct_monthly_zone_revenue model?
 
-    12,998
-    14,120
-answer is:12,184
-    15,421
+12,998
+14,120
+>answer is:12,184
+15,421
 
 
 Question 4. Best Performing Zone for Green Taxis (2020)
@@ -58,12 +58,12 @@ Using the fct_monthly_zone_revenue table, find the pickup zone with the highest 
 
 Which zone had the highest revenue?
 
-answer is:East Harlem North
-    Morningside Heights
-    East Harlem South
-    Washington Heights South
+>answer is:East Harlem North
+Morningside Heights
+East Harlem South
+Washington Heights South
 
- '''
+```
 SELECT pickup_zone,
 revenue_month,
 revenue_monthly_total_amount,
@@ -72,19 +72,19 @@ FROM `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
 WHERE date_trunc(revenue_month, year) = '2020-01-01 00:00:00 UTC'
 AND service_type = 'Green'
 ORDER BY total_per_zone DESC;
-'''
+```
 
 
 Question 5. Green Taxi Trip Counts (October 2019)
 
 Using the fct_monthly_zone_revenue table, what is the total number of trips (total_monthly_trips) for Green taxis in October 2019?
 
-    500,234
-    350,891
-answer is:384,624
-    421,509
+500,234
+350,891
+>answer is:384,624
+421,509
 
-'''
+```
 WITH table as (
 select pickup_zone, revenue_month, SUM(total_monthly_trips) as total from `terraform-course-485512.dbt_mdr.fct_monthly_zone_revenue`
 where revenue_month = '2019-10-01 00:00:00 UTC'
@@ -92,23 +92,23 @@ AND service_type = 'Green'
 GROUP BY pickup_zone, revenue_month
 ORDER BY total DESC)
 SELECT SUM(table.total) from table
-'''
+```
 
 Question 6. Build a Staging Model for FHV Data
 
 Create a staging model for the For-Hire Vehicle (FHV) trip data for 2019.
 
-    Load the FHV trip data for 2019 into your data warehouse
-    Create a staging model stg_fhv_tripdata with these requirements:
-        Filter out records where dispatching_base_num IS NULL
-        Rename fields to match your project's naming conventions (e.g., PUlocationID → pickup_location_id)
+Load the FHV trip data for 2019 into your data warehouse
+Create a staging model stg_fhv_tripdata with these requirements:
+Filter out records where dispatching_base_num IS NULL
+Rename fields to match your project's naming conventions (e.g., PUlocationID → pickup_location_id)
 
 What is the count of records in stg_fhv_tripdata?
 
-    42,084,899
-Answer is: 43,244,693
-    22,998,722
-    44,112,187
+42,084,899
+>Answer is: 43,244,693
+22,998,722
+44,112,187
 
 
 
