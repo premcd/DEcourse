@@ -13,4 +13,7 @@ sources:
 
            - name: yellow_tripdata
              description: Raw yellow taxi trip records
+
+           - name: fhv_tripdata_2019
+             description: Raw FHV trip records
         
