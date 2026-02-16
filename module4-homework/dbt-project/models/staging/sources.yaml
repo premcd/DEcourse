@@ -1,0 +1,16 @@
+sources:
+      - name : raw_data
+        description : this references the data  I have access to
+        database : terraform-course-485512
+        schema:  nytaxi 
+        config:
+            freshness:
+                warn_after: {count: 24, period: hour}
+                error_after: {count: 48, period: hour}
+        tables:
+           - name: green_tripdata
+             description: Raw green taxi trip records
+
+           - name: yellow_tripdata
+             description: Raw yellow taxi trip records
+        
