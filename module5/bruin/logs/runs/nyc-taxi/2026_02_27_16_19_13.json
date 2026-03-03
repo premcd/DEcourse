@@ -1,0 +1,55 @@
+{
+  "cmdline": [
+    "bruin",
+    "run",
+    "bruin/zoomcamp/pipeline/pipeline.yml"
+  ],
+  "parameters": {
+    "downstream": false,
+    "startDate": "2026-02-26 00:00:00.000000",
+    "endDate": "2026-02-26 23:59:59.999999",
+    "workers": 16,
+    "environment": "",
+    "force": false,
+    "pushMetadata": false,
+    "noLogFile": false,
+    "fullRefresh": false,
+    "useUV": false,
+    "tag": "",
+    "excludeTag": "",
+    "only": [],
+    "output": "",
+    "expUseWingetForUv": false,
+    "configFilePath": "",
+    "sensorMode": "",
+    "applyIntervalModifiers": false,
+    "annotations": "",
+    "useGong": false
+  },
+  "metadata": {
+    "version": "v0.11.473",
+    "os": "linux"
+  },
+  "state": [
+    {
+      "name": "ingestion.payment_lookup",
+      "status": "succeeded"
+    },
+    {
+      "name": "ingestion.trips",
+      "status": "succeeded"
+    },
+    {
+      "name": "reports.trips_report",
+      "status": "failed"
+    },
+    {
+      "name": "staging.trips",
+      "status": "failed"
+    }
+  ],
+  "version": "1.0.0",
+  "timestamp": "2026-02-27T16:19:32.65567504+01:00",
+  "run_id": "2026_02_27_16_19_13",
+  "compatibility_hash": "d0abebafeb4b8b87c058db3f1e1c090d82af7424481b9185636bdc9aa485d0c1"
+}

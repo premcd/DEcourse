@@ -1,0 +1,49 @@
+{
+  "cmdline": [
+    "bruin",
+    "run",
+    "--start-date",
+    "2025-01-23T00:00:00.000Z",
+    "--end-date",
+    "2025-02-23T23:59:59.999999999Z",
+    "--environment",
+    "default",
+    "/home/clairma/Desktop/1-Lemonde/TECH/0-mes-exos-mon-code/DE/module5/bruin/zoomcamp/pipeline/assets/ingestion/trips.py"
+  ],
+  "parameters": {
+    "downstream": false,
+    "startDate": "2025-01-23T00:00:00.000Z",
+    "endDate": "2025-02-23T23:59:59.999999999Z",
+    "workers": 16,
+    "environment": "default",
+    "force": false,
+    "pushMetadata": false,
+    "noLogFile": false,
+    "fullRefresh": false,
+    "useUV": false,
+    "tag": "",
+    "excludeTag": "",
+    "only": [],
+    "output": "",
+    "expUseWingetForUv": false,
+    "configFilePath": "",
+    "sensorMode": "",
+    "applyIntervalModifiers": false,
+    "annotations": "",
+    "useGong": false
+  },
+  "metadata": {
+    "version": "v0.11.471",
+    "os": "linux"
+  },
+  "state": [
+    {
+      "name": "ingestion.trips",
+      "status": "succeeded"
+    }
+  ],
+  "version": "1.0.0",
+  "timestamp": "2026-02-25T11:06:31.273257984+01:00",
+  "run_id": "2026_02_25_11_05_48",
+  "compatibility_hash": "e38e434cca386e79c6a59c7629be1114c1aa8128622bb6cc044a3a44007385f0"
+}

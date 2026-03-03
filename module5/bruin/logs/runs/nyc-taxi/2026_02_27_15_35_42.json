@@ -1,0 +1,53 @@
+{
+  "cmdline": [
+    "bruin",
+    "run",
+    "--start-date",
+    "2026-02-26T00:00:00.000Z",
+    "--end-date",
+    "2026-02-26T23:59:59.999999999Z",
+    "--environment",
+    "default",
+    "/home/clairma/Desktop/1-Lemonde/TECH/0-mes-exos-mon-code/DE/module5/bruin/zoomcamp/pipeline/assets/ingestion/payment_lookup.asset.yml"
+  ],
+  "parameters": {
+    "downstream": false,
+    "startDate": "2026-02-26T00:00:00.000Z",
+    "endDate": "2026-02-26T23:59:59.999999999Z",
+    "workers": 16,
+    "environment": "default",
+    "force": false,
+    "pushMetadata": false,
+    "noLogFile": false,
+    "fullRefresh": false,
+    "useUV": false,
+    "tag": "",
+    "excludeTag": "",
+    "only": [],
+    "output": "",
+    "expUseWingetForUv": false,
+    "configFilePath": "",
+    "sensorMode": "",
+    "applyIntervalModifiers": false,
+    "annotations": "",
+    "useGong": false
+  },
+  "metadata": {
+    "version": "v0.11.473",
+    "os": "linux"
+  },
+  "state": [
+    {
+      "name": "ingestion.payment_lookup",
+      "status": "succeeded"
+    },
+    {
+      "name": "ingestion.trips",
+      "status": "skipped"
+    }
+  ],
+  "version": "1.0.0",
+  "timestamp": "2026-02-27T15:35:46.029536244+01:00",
+  "run_id": "2026_02_27_15_35_42",
+  "compatibility_hash": "6d227965353e788da0b67271ccc1911e45d5c4fed2ba9b9f253b20818b15f9bb"
+}
