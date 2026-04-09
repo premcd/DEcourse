@@ -1,5 +1,6 @@
 Commands used for the course:
 
+```
 docker run -it --rm \
   -e POSTGRES_USER="root" \
   -e POSTGRES_PASSWORD="root" \
@@ -10,6 +11,9 @@ docker run -it --rm \
   --name pgdatabase \
   postgres:18
 
+```
+
+```
 uv run python ingest_data.py \
   --pg-user=root \
   --pg-pass=root \
@@ -20,7 +24,8 @@ uv run python ingest_data.py \
   --year=2021 \
   --month=12 \
   --chunksize=100000
-
+```
+```
   docker run -it --rm \
     --network=pipeline-default \
     --name ingest \
@@ -34,9 +39,11 @@ uv run python ingest_data.py \
     --year=2021 \
     --month=12 \
     --chunksize=100000
+```
 
 module1-homework_default
 
+```
 docker run -it \
   -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
   -e PGADMIN_DEFAULT_PASSWORD="root" \
@@ -45,9 +52,11 @@ docker run -it \
   --network=pg-network \
   --name pgadmin \
   dpage/pgadmin4
-
+```
 
 sql request to manually join 2 tables:
+
+```
   SELECT
 tpep_pickup_datetime,
 tpep_dropoff_datetime,
@@ -64,4 +73,4 @@ WHERE
    t."PULocationID" = zpu."LocationID" AND
    t."DOLocationID" = zdo."LocationID"
 
-
+```
